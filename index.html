@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Box</title>
+<style>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+#clickableBox {
+    width: 150px; /* Initial smaller size */
+    height: 150px; /* Initial smaller size */
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 0 15px blue;
+    cursor: pointer;
+    transition: all 2s; /* Transition for size and shadow */
+}
+
+#clickableBox:hover {
+    box-shadow: 0 0 25px blue;
+}
+
+#displayText {
+    font-size: 24px;
+    color: white;
+    opacity: 1;
+    transition: opacity 2s, font-size 2s;
+}
+
+#displayText.large-text {
+    font-size: 96px; /* 4 times the initial size */
+    color: black; /* Change color to black */
+}
+</style>
+</head>
+<body>
+<div id="clickableBox" onclick="changeText()">
+    <span id="displayText">Near Miss</span>
+</div>
+<script>
+function changeText() {
+    const displayText = document.getElementById("displayText");
+    const box = document.getElementById("clickableBox");
+    if (displayText.innerText === "Near Miss") {
+        displayText.style.opacity = 0;
+        setTimeout(() => {
+            displayText.innerText = "Jabroni";
+            displayText.classList.add('large-text');
+            box.style.width = '400px';  // Enlarged to fit new text size
+            box.style.height = '400px'; // Enlarged to fit new text size
+            displayText.style.opacity = 1;
+        }, 2000); // Delay to start showing new text
+    }
+}
+</script>
+</body>
+</html>
